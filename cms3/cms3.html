@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS6113 - Third Assignment JSON</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" id="stylesheet" href="default.css">
+</head> 
+<body>
+    <table>
+        <tr>
+            <td id="nav">
+                <ul id="navList"></ul>
+                <div id="themeButtons">
+                    <button onclick="switchTheme('default.css')" id="buttonhover">Default Theme</button>
+                    <button onclick="switchTheme('retro.css')" id="buttonhover">Retro Theme</button>
+                    <button onclick="switchTheme('night.css')" id="buttonhover">Night Theme</button>
+                </div>
+            </td>
+            <td id="contentwindow">
+                <!---->
+                <button id="toggleButton" onclick="toggleView()">Toggle View</button>
+               <div id="scrolling">
+                </div> 
+                <div id="messages"></div>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        //global so it can be used in other functions such as displayContent and toggleView
+        let contentData; 
+
+        // Fetch content.json instead of markdown. Calling create Nav button and display the first content for default 
+        function fetchJason() {
+            fetch('content.json')
+                .then(response => response.json())
+                .then(data => {
+                    //assigning contentData to the data parameter: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Promises
+                    contentData = data;
+                    createNavButtons();
+                    //defaulting to first index in Json file
+                    displayContent(0); 
+                })
+                //error handling if it cannot fetch 
+                .catch(error => displayMessage(`Error fetching content: ${error.message}`));
+        }
+
+        // Create navigation buttons -  clears the list first and then adds the nav buttons from the titles in the JSON file
+        function createNavButtons() {
+            const navList = document.getElementById('navList');
+            navList.innerHTML = '';
+
+            contentData.forEach(item => {
+                const button = document.createElement('button');
+                button.innerHTML = item.title;
+                // for eventListener displaycontent  
+                button.addEventListener('click', () => displayContent(contentData.indexOf(item)));
+                //creates the button to the navList 
+                navList.appendChild(button);
+            });
+        }
+
+        //Content based on index
+        function displayContent(index) {
+            const content = contentData[index];
+            //auto on abstract first 
+            document.getElementById('scrolling').innerHTML = content.abstract;
+            displayMessage(`Content successfully loaded: ${content.title}`);
+        }
+
+        // Toggle between abstract and long view
+    function toggleView() {
+        //getting the index as contentData 
+        const content = contentData[getIndex()]; 
+        const contentDiv = document.getElementById('scrolling');
+
+        //Checking for abstractview 
+        const isAbstractDisplayed = contentDiv.innerHTML === content.abstract;
+
+        //If it's on abstract, then change to long 
+        if (isAbstractDisplayed) {
+            contentDiv.innerHTML = content.long;
+        } else {
+            contentDiv.innerHTML = content.abstract; //otherwise the view is on long already, so change to abstract
+        }
+    }
+
+        // index for toggleView
+       function getIndex() {
+            const contentDiv = document.getElementById('scrolling');
+            const currentContent = contentDiv.innerHTML;
+
+            //Checking if the abstract OR the long  item is equal to whats currently in view 
+           const index = contentData.findIndex(item => {
+               return item.abstract === currentContent || item.long === currentContent;
+           });
+        
+           return index;
+        }
+
+        // Switch theme function 
+        function switchTheme(style) {
+            document.getElementById('stylesheet').href = style;
+            displayMessage(`Theme switched to ${style}`);
+        }
+
+        // Display message function 
+        function displayMessage(message) {
+            document.getElementById('messages').innerHTML = message;
+        }
+
+        // Call fetchJason function on page load
+        window.onload = fetchJason;
+
+    </script>
+</body>
+</html>

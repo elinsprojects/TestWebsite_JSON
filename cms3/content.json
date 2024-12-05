@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Home",
+        "abstract": "Welcome to my website! Click toggle to view more.",
+        "long": "You can click on my navigation for different subject. In UCC you will learn about my journey in UCC. In the Personal section you will find out more about me. Thank you and welcome to this page once again!"
+    },
+    {
+        "title": "UCC",
+        "abstract": "Learn about my UCC Journey.",
+        "long": "I started my journey in UCC by doing a bachelors degree in Film and Screen Media. After graduating with first class honours, I had a 3 year break from college where I was working as a Video Quality Specialist and Metadata Analyst. It was a great job, however, it was time to upskill and start a new chapter in my career. Thus began my MSc degree in Interactive Media at the Computer Science Department in UCC. I love learning how to code both front and backend and while it has been quite challenging, it is quite rewarding in the end!"
+    },
+    {
+        "title": "Personal",
+        "abstract": "Learn more about me and my interests.",
+        "long": "I have a wide range of interests that bring me joy. One of my favorite hobbies is gardening. I love spending time outdoors, tending to my plants, and watching them grow. There's something incredibly rewarding about nurturing life and creating a peaceful, green space. When I’m not in the garden, you’ll often find me dancing. Dancing allows me to express myself and stay active. I also share a special bond with my dog, who is always by my side. Going on walks with him is one of the highlights of my day; it’s a chance to enjoy the fresh air, explore new places, and spend quality time together."
+    }
+]

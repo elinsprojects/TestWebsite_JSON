@@ -1,0 +1,31 @@
+body {
+  background-color: #042d58;
+  color: white;
+}
+
+#nav {
+  background-color: #164372;
+}
+
+
+
+li button {
+  color: white;
+}
+
+li button:hover {
+  background-color: #69adf2;
+}
+
+button {
+  background-color: #7aa4cf;
+}
+
+#buttonhover:hover {
+  background-color: #69adf2;
+}
+
+#messages {
+  color: black;
+
+}

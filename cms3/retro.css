@@ -1,0 +1,31 @@
+
+body {
+  background-color: #f1bb79;
+}
+
+#nav {
+  background-color: #a85e09;
+}
+
+
+li button {
+  color: black;
+
+
+}
+
+li button:hover {
+  background-color: #e98716;
+}
+
+button {
+  background-color: #f4b968;
+}
+
+#buttonhover:hover {
+  background-color: #e98716;
+}
+#themeButtons button {
+  background-color: #eb9824;
+  }
+  
